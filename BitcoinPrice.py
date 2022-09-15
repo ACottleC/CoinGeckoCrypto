@@ -1,17 +1,11 @@
-import json
 import sys
 import time
 import requests
-import ast
 import matplotlib.pyplot as plt
 import pandas as pd
-from pyspark.sql import *
-from pyspark.sql import functions as sf
 from pycoingecko import CoinGeckoAPI
 from datetime import datetime
 
-#We initialize Spark Session
-spark = SparkSession.builder.appName('BitcoinPrice').getOrCreate()
 
 #Select the start(now) and end times in UNIX format
 start_datetime = time.mktime(datetime(2012, 1, 1, 0, 0).timetuple())
@@ -57,5 +51,5 @@ combined_df['price % difference'] = combined_df['price difference'] / combined_d
 combined_df.plot(x='timestamp', y=['price difference', 'price % difference'])
 plt.show()
 #Exporting the dataset to a csv
-combined_df.to_csv('data/BitcoinPrice.csv')
+combined_df.to_excel('data/BitcoinPrice.xlsx', index=False)
 
