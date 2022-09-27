@@ -11,7 +11,10 @@ class DownloadFunctions:
     @staticmethod
     def get_coin_prices(coin_id, start_date):
         # Select the start(now) and end times in UNIX format
-        start_datetime = time.mktime(datetime(2012, 1, 1, 0, 0).timetuple())
+        if not start_date:
+            start_datetime = time.mktime(datetime(2012, 1, 1, 0, 0).timetuple())
+        else:
+            start_datetime = time.mktime(datetime(2012, 1, 1, 0, 0).timetuple())
         end_datetime = time.mktime(datetime(datetime.now().year, datetime.now().month, datetime.now().day,
                                             datetime.now().hour, datetime.now().minute)
                                    .timetuple())
